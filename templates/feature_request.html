@@ -1,46 +1,132 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Add Feature Request</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-<h1> Add a new feature</h1>
-<div>
-	<form action="" method="post">
-		<div>
-			<label for="title">Title:</label>
-			<input type="text" name="title" id="title">
+<div class="container">
+	<h2> Add a new feature</h2>
+	<div class="row">
+		<div class="col-md-8" style="border-right: 2px solid #888">
+			<h3>Client A</h3>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Priority</th>
+							<th>Title</th>
+							<th>Description</th>
+							<th>Target Date</th>
+							<th>Product Area</th>
+						</tr>
+					</thead>
+					<tbody data-bind="foreach: clientAList">
+						<tr>
+								<td data-bind="text: priority"></td>
+								<td data-bind="text: title"></td>
+								<td data-bind="text: desc"></td>
+								<td data-bind="text: date"></td>
+								<td data-bind="text: area"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<h3>Client B</h3>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Priority</th>
+							<th>Title</th>
+							<th>Description</th>
+							<th>Target Date</th>
+							<th>Product Area</th>
+						</tr>
+					</thead>
+					<tbody data-bind="foreach: clientBList">
+						<tr>
+							<td data-bind="text: priority"></td>
+							<td data-bind="text: title"></td>
+							<td data-bind="text: desc"></td>
+							<td data-bind="text: date"></td>
+							<td data-bind="text: area"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<h3>Client C</h3>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Priority</th>
+							<th>Title</th>
+							<th>Description</th>
+							<th>Target Date</th>
+							<th>Product Area</th>
+						</tr>
+					</thead>
+					<tbody data-bind="foreach: clientCList">
+						<tr>
+							<td data-bind="text: priority"></td>
+							<td data-bind="text: title"></td>
+							<td data-bind="text: desc"></td>
+							<td data-bind="text: date"></td>
+							<td data-bind="text: area"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>						
 		</div>
-		<div>
-			<label for="desc">Description:</label>
-			<input type="text" name="desc" id="desc">
+		<div class="col-md-4">
+			<form action="" method="post">
+				<div>
+					<label for="title">Title:</label>
+					<input type="text" name="title" id="title" data-bind="value: title">
+				</div>
+				<div>
+					<label for="desc">Description:</label>
+					<input type="text" name="desc" id="desc" data-bind="value: desc">
+				</div>
+				<div>
+					<label for="client">Client:</label>
+					<select name="client" id="client" data-bind="value: client">
+						<option name="a" id="a" value="a">Client A</option>
+						<option name="b" id="b" value="b">Client B</option>
+						<option name="c" id="c" value="c">Client C</option>
+					</select>
+				</div>
+				<div>
+					<label for="priority">Client Priority:</label>
+					<input type="text" id="priority" name="priority" data-bind="value: priority">
+				</div>
+				<div>
+					<label for="target_date">Target Date:</label>
+					<input type="text" id="target_date" name="target_date" data-bind="value: target_date">
+				</div>
+				<div>
+					<label for="area">Product Area:</label>
+					<select name="area" id="area" data-bind="value: area">
+						<option name="p" id="p">Policies</option>
+						<option name="b" id="b">Billings</option>
+						<option name="c" id="c">Claims</option>
+						<option name="r" id="r">Reports</option>
+					</select>
+				</div>
+				<button class="btn btn-primary" data-bind="click: addNewFeature">Add New Feature</button>	
+			</form>				
 		</div>
-		<div>
-			<label for="client">Client:</label>
-			<select name="client" id="client">
-				<option name="a" id="a">Client A</option>
-				<option name="b" id="b">Client B</option>
-				<option name="c" id="c">Client C</option>
-			</select>
-		</div>
-		<div>
-			<label for="priority">Client Priority:</label>
-			<input type="text" id="priority" name="priority">
-		</div>
-		<div>
-			<label for="target_date">Target Date:</label>
-			<input type="text" id="target_date" name="target_date">
-		</div>
-		<div>
-			<label for="area">Product Area:</label>
-			<select name="area" id="area">
-				<option name="p" id="p">Policies</option>
-				<option name="b" id="b">Billings</option>
-				<option name="c" id="c">Claims</option>
-				<option name="r" id="r">Reports</option>
-			</select>
-		</div>		
-	</form>
+	</div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../static/js/app.js"></script>
+
 </body>
 </html>
