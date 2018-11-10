@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/", methods = ['GET', 'POST'])
 def index():
-    return "Hello!"
+    return render_template("feature_request.html")
 
 
 app.run(debug = True, port = 8080)
