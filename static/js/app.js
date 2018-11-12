@@ -13,22 +13,24 @@ function viewModel() {
 
     this.addNewFeature = function() {
         newFeatureStruct = {
-            title: this.title(),
-            desc: this.desc(),
-            priority: this.priority(),
-            date: this.target_date(),
-            area: this.area()
+            title: ko.observable(this.title()),
+            desc: ko.observable(this.desc()),
+            priority: ko.observable(this.priority()),
+            date: ko.observable(this.target_date()),
+            area: ko.observable(this.area())
         }
         if(this.client() == "a") {
-            this.clientAList(reorder(this.priority(), this.clientAList()));
+            reorder(this.priority(), this.clientAList());
             this.clientAList.push(newFeatureStruct);
             this.clientAList.sort(compare);
         }
         else if(this.client() == "b") {
+            reorder(this.priority(), this.clientBList());
             this.clientBList.push(newFeatureStruct)
             this.clientBList.sort(compare);
         }
         else {
+            reorder(this.priority(), this.clientCList());
             this.clientCList.push(newFeatureStruct)
             this.clientCList.sort(compare);
         }
@@ -38,18 +40,17 @@ function viewModel() {
 function compare(a,b) {
     const prioA = a;
     const prioB = b;
-    return prioA.priority - prioB.priority;
+    return prioA.priority() - prioB.priority();
 }
 
 function reorder(priority, clientList) {
-    console.log(clientList);
     var newClientList;
     var index = -1;
     for (var i = 0; i < clientList.length; i++) {
-        if (priority == clientList[i].priority) {
+        if (priority == clientList[i].priority()) {
             for (j = i; j < clientList.length; j++) {
-                x = Number(clientList[j].priority) + 1;
-                clientList[j].priority = String(x);
+                x = Number(clientList[j].priority()) + 1;
+                clientList[j].priority(String(x));
             }
             break;
         }
