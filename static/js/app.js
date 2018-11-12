@@ -23,18 +23,28 @@ function viewModel() {
             reorder(this.priority(), this.clientAList());
             this.clientAList.push(newFeatureStruct);
             this.clientAList.sort(compare);
+            var json_data = ko.toJSON(view_model)
+            var list_data = JSON.stringify(JSON.parse(json_data)["clientAList"]);
+            console.log(list_data)
         }
         else if(this.client() == "b") {
             reorder(this.priority(), this.clientBList());
             this.clientBList.push(newFeatureStruct)
             this.clientBList.sort(compare);
+            var json_data = ko.toJSON(view_model)
+            var list_data = JSON.stringify(JSON.parse(json_data)["clientBList"]);
+            console.log(list_data)
         }
         else {
             reorder(this.priority(), this.clientCList());
             this.clientCList.push(newFeatureStruct)
             this.clientCList.sort(compare);
+            var json_data = ko.toJSON(view_model)
+            var list_data = JSON.stringify(JSON.parse(json_data)["clientCList"]);
+            console.log(list_data)
         }
     }
+
 }
 
 function compare(a,b) {
@@ -58,4 +68,6 @@ function reorder(priority, clientList) {
     return clientList;
 }
 
-ko.applyBindings(new viewModel());
+var view_model = new viewModel();
+ko.applyBindings(view_model);
+// ko.applyBindings(new viewModel());
