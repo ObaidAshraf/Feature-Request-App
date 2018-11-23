@@ -12,7 +12,9 @@ def index():
 
 @app.route("/newFeature", methods = ['POST'])
 def addNewFeature():
-    dbc.insert_feature(json.dumps(request.json))
+    print("Hello!!")
+    print(json.dumps(request))
+    #dbc.insert_feature(json.dumps(request.json))
     return "ABC"
 
 @app.route("/getFeatures", methods = ['GET'])
