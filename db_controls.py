@@ -6,8 +6,13 @@ DATABASE_URL = "postgres://cjjlbjdi:Gp4loacJ0QcwAhiDYpwMF8ADFy_7Kmex@baasu.db.el
 
 url = urlparse(DATABASE_URL)
 
+clients = {
+    "a": "clienta",
+    "b": "clientb",
+    "c": "clientc"
+}
 
-def insert_feature(data):
+def insert_feature(data, clientName):
     conn = pg.connect(database=url.path[1:],
                       user=url.username,
                       password=url.password,
@@ -15,13 +20,13 @@ def insert_feature(data):
                       port=url.port
                       )
     cur = conn.cursor()
-    sql = 'SELECT * from reqs'
+    sql = "SELECT (" + (clients[clientName]) + ") from reqs"
     cur.execute(sql)
     rows = cur.fetchall()
     if (cur.rowcount == 0):
-        sql = "INSERT into reqs (clienta) VALUES ('" + str(data) + "')"
+        sql = "INSERT into reqs (" + (clients[clientName]) + ") VALUES ('" + str(data) + "')"
     else:
-        sql = "UPDATE reqs SET clienta = '" + str(data) + "'"
+        sql = "UPDATE reqs SET " + (clients[clientName]) + " = '" + str(data) + "'"
     cur.execute(sql)
     conn.commit()
     conn.close()
